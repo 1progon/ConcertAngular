@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">Tickets</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/events"
+             routerLinkActive="active">Events</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"
+             routerLink="/performers"
+             routerLinkActive="active">
+            Performers
+          </a>
+          <!--<ul class="dropdown-menu"-->
+          <!--    [ngClass]="{show: isSubMenuShow}"-->
+          <!--    aria-labelledby="navbarDropdown">-->
+          <!--  <li *ngFor="let category of performerCategories">-->
+          <!--    <ul>-->
+          <!--      <li *ngFor="let subCat of category.subCategories">-->
+          <!--        <a *ngFor="let performer of subCat.performers"-->
+          <!--           (click)="isSubMenuShow = false"-->
+          <!--           class="dropdown-item"-->
+          <!--           routerLinkActive="active"-->
+          <!--           [routerLink]="['/performers', performer.slug]">{{performer.name}}</a>-->
+          <!--      </li>-->
+          <!--    </ul>-->
+          <!--</ul>-->
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/venues"
+             routerLinkActive="active">Venues</a>
+        </li>
+      </ul>
+
+
+      <div class="auth-links" *ngIf="!auth.auth">
+        <a routerLink="/login" class="btn btn-outline-secondary me-1">Login</a>
+        <a routerLink="/register" class="btn btn-danger">Register</a>
+      </div>
+
+      <div class="auth-links" *ngIf="auth.auth">
+        <a routerLink="/dashboard" class="me-1">Dashboard</a>
+        <a routerLink="/logout" class="btn btn-danger">Logout</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+

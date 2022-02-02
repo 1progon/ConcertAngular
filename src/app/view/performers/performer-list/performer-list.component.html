@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+
+    <!--Each Performer-->
+    <div *ngFor="let performer of model.items" class="col-md-6 col-lg-3">
+      <a [routerLink]="['/performers', performer?.slug ]">
+        <div class="artists">
+          <div class="artists-overlay"></div>
+          <img class="img-fluid"
+               src=""
+               alt="Image">
+          <div class="artists-info">
+
+            <!--Icons social-->
+            <ul class="list-inline">
+              <li>
+                <a routerLink="#">i</a>
+              </li>
+              <li>
+                <a routerLink="#">i</a>
+              </li>
+              <li>
+                <a routerLink="#">i</a>
+              </li>
+            </ul>
+            <!--End social icons-->
+
+            <h5>{{ performer?.name }}</h5>
+            <h6>{{ performer?.parent?.name }}</h6>
+          </div>
+        </div>
+      </a>
+    </div>
+    <!--End each performer-->
+
+  </div>
+
+  <app-pagination
+    [pagination]="model.pagination"
+    [componentURL]="componentURL"></app-pagination>
+
+</div>
