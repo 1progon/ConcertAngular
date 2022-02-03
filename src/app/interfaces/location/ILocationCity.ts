@@ -7,24 +7,24 @@ import {ITimeZone} from "./ITimeZone";
 export interface ILocationCity extends IBaseModel {
 
 
-  IsStateCapital: boolean;
-  IsCountryCapital: boolean;
+  isStateCapital: boolean;
+  isCountryCapital: boolean;
 
-  StateId: number;
-  State: ILocationState;
-
-
-  Description: string;
-
-  Events: IEvent[];
-  Venues: IVenue[];
-
-  Iata: string;
-
-  ShortName: string;
+  stateId: number;
+  state: ILocationState;
 
 
-  Popular: boolean;
+  description: string;
 
-  TimeZone: ITimeZone;
+  events: IEvent[];
+  venues: IVenue[];
+
+  iata: string;
+
+  shortName: string;
+
+
+  popular: boolean;
+
+  timeZone: ITimeZone;
 }

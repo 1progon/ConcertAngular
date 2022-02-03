@@ -3,15 +3,15 @@ import {ILocationCountry} from "./ILocationCountry";
 import {ILocationCity} from "./ILocationCity";
 
 export interface ILocationState extends IBaseModel {
-  Description: string;
+  description: string;
 
 
-  Abbreviation: string;
+  abbreviation: string;
 
-  ShortName: string;
+  shortName: string;
 
-  CountryId: number;
-  Country: ILocationCountry;
+  countryId: number;
+  country: ILocationCountry;
 
-  Cities: ILocationCity[]
+  cities: ILocationCity[]
 }

@@ -2,16 +2,16 @@ import {IBaseModel} from "../IBaseModel";
 import {ILocationCountry} from "./ILocationCountry";
 
 export interface ITimeZone extends IBaseModel {
-  Country: ILocationCountry;
+  country: ILocationCountry;
 
-  // NpgsqlPoint? Coordinates
+  // npgsqlPoint? coordinates
 
-  Comments: string;
+  comments: string;
 
 
-  UtcOffset: string;
+  utcOffset: string;
 
-  UtcDstOffset: string;
+  utcDstOffset: string;
 
-  Notes: string;
+  notes: string;
 }
