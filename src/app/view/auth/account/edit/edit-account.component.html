@@ -1,0 +1,54 @@
+<h2>Edit account</h2>
+
+<form #formRef="ngForm" class="col-12 col-sm-6" (ngSubmit)="onSubmit(formRef, model)">
+  <div class="mb-3">
+    <label for="email" class="form-label required">Email</label>
+    <input type="email"
+           [ngModel]="model?.email"
+           (ngModelChange)="model ? model.email = emailRef.value : ''"
+           #emailRef
+           name="email"
+           id="email"
+           email
+           required
+           class="form-control">
+  </div>
+
+  <div class="mb-3">
+    <label for="firstName" class="form-label required">First Name</label>
+    <input type="firstName"
+           [ngModel]="model?.firstName"
+           (ngModelChange)="model ? model.firstName = firstNameRef.value : ''"
+           #firstNameRef
+           name="firstName"
+           id="firstName"
+           class="form-control">
+  </div>
+
+
+  <div class="mb-3">
+    <label for="lastName" class="form-label required">Last Name</label>
+    <input type="lastName"
+           [ngModel]="model?.lastName"
+           (ngModelChange)="model ? model.lastName = lastNameRef.value : ''"
+           #lastNameRef
+           name="lastName"
+           id="lastName"
+           class="form-control">
+  </div>
+
+
+  <div class="mb-3">
+    <input type="submit" class="btn btn-success"
+           [disabled]="formRef.invalid || !formRef.dirty || isSubmitted">
+  </div>
+
+
+  <span *ngIf="error" class="text-danger">Error...</span>
+</form>
+
+
+<app-toast
+  *ngIf="!toast.isHidden"
+  [model]="toast"
+  (destroyToast)="toast.isHidden=$event"></app-toast>

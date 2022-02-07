@@ -1,4 +1,4 @@
-export interface IPagination {
+export interface PaginationDto {
   total: number;
 
   perPage: number;

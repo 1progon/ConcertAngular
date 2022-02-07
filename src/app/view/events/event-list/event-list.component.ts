@@ -1,11 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {EventService} from "../../../services/event.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {EventsListingDto} from "../../../dto/eventsListingDto";
 import {IPaginated} from "../../../interfaces/pagination/IPaginated";
-
-
-
+import {IEvent} from "../../../interfaces/event/IEvent";
+import {BaseListingDto} from "../../../dto/baseListingDto";
 
 
 @Component({
@@ -17,7 +15,7 @@ export class EventListComponent implements OnInit, IPaginated {
   page: number = 1;
   componentURL = '/events';
 
-  model: EventsListingDto = {
+  model: BaseListingDto<IEvent> = {
     items: [],
     pagination: {
       total: 0,

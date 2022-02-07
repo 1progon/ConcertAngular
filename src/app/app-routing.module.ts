@@ -9,9 +9,17 @@ import {LoginComponent} from "./view/auth/login/login.component";
 import {RegisterComponent} from "./view/auth/register/register.component";
 import {ErrorComponent} from "./view/error/error/error.component";
 import {LogoutComponent} from "./view/auth/logout/logout.component";
-import {DashboardComponent} from "./view/auth/account/dashboard/dashboard.component";
+import {AccountDashboardComponent} from "./view/auth/account/dashboard/account-dashboard.component";
 import {VenueListComponent} from "./view/venues/venue-list/venue-list.component";
 import {VenueShowComponent} from "./view/venues/venue-show/venue-show.component";
+import {AdminGuard} from "./guards/admin.guard";
+import {UserGuard} from "./guards/user.guard";
+import {UsersListComponent} from "./view/auth/admin/users/users-list/users-list.component";
+import {AddUserComponent} from "./view/auth/admin/users/add-user/add-user.component";
+import {EditUserComponent} from "./view/auth/admin/users/edit-user/edit-user.component";
+import {EditAccountComponent} from "./view/auth/account/edit/edit-account.component";
+import {AccountSidebarComponent} from "./view/auth/account/include/sidebar/account-sidebar.component";
+import {AccountComponent} from "./view/auth/account/account/account.component";
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
@@ -31,16 +39,41 @@ const routes: Routes = [
   {path: 'performers/page/:pageId', component: PerformerListComponent},
   {path: 'performers/:slug', component: PerformerShowComponent},
 
+
   // Auth
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'logout', component: LogoutComponent},
 
-  {path: 'dashboard', component: DashboardComponent},
+
+  // Account routes
+  {
+    path: 'account', component: AccountComponent, canActivate: [UserGuard],
+    children: [
+      {path: 'dashboard', component: AccountDashboardComponent},
+      {path: 'edit', component: EditAccountComponent},
+    ]
+  },
+
+  // Admin
+  {
+    path: 'admin', canActivate: [AdminGuard],
+    children: [
+      {
+        path: 'users', component: UsersListComponent, children: [
+          {path: 'add-user', component: AddUserComponent},
+          {path: 'edit-user', component: EditUserComponent},
+        ]
+      },
+    ]
+  },
 
 
+  // Errors and others
+  {path: 'error/:code', component: ErrorComponent},
   {path: '404', component: ErrorComponent},
-  {path: '**', component: ErrorComponent}
+
+  {path: '**', component: ErrorComponent},
 
 
 ];

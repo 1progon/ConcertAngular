@@ -1,5 +1,10 @@
+import {ILocationCountry} from "./location/ILocationCountry";
+import {ILocationState} from "./location/ILocationState";
+import {ILocationCity} from "./location/ILocationCity";
+
 export interface IAccountBase {
   id: number;
+  guid: string;
 
   active: boolean;
   status: string;
@@ -8,29 +13,28 @@ export interface IAccountBase {
   password: string;
   token: string;
   tokenExpire: Date;
-  phone: string | null;
-  avatar: string | null;
-  about: string | null;
+  phone?: string;
+  avatar?: string;
+  about?: string;
 
   // Location
   countryId: number;
-  // LocationCountry? Country
+  country?: ILocationCountry;
 
   stateId: number;
-  // LocationState? State
+  state?: ILocationState;
 
   cityId: number;
-  // LocationCity? City
+  city?: ILocationCity;
 
   // Address
+  zipCode?: string;
 
-  zipCode: string | null;
+  postalCode?: string;
+  street?: string;
+  houseNumber?: string;
+  houseLetter?: string;
 
-  postalCode: string | null;
-  street: string | null;
-  houseNumber: string | null;
-  houseLetter: string | null;
-
-  createdAt: Date | null;
-  updatedAt: Date | null;
+  createdAt?: Date;
+  updatedAt?: Date;
 }

@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {headerDefault} from "../../config";
 import {Observable} from "rxjs";
-import {VenuesListingDto} from "../dto/VenuesListingDto";
+import {IVenue} from "../interfaces/venue/IVenue";
+import {BaseListingDto} from "../dto/baseListingDto";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class VenueService {
   constructor(private http: HttpClient) {
   }
 
-  getVenues(pageId = 1, perPage = 20): Observable<VenuesListingDto> {
+  getVenues(pageId = 1, perPage = 20): Observable<BaseListingDto<IVenue>> {
     let params = new HttpParams();
 
     if (pageId > 1) {
@@ -24,8 +24,7 @@ export class VenueService {
       params = params.append('PerPage', perPage)
     }
 
-    return this.http.get<VenuesListingDto>(environment.apiUrl + 'api/Venues', {
-      headers: {...headerDefault.headers},
+    return this.http.get<BaseListingDto<IVenue>>(environment.apiUrl + 'api/Venues', {
       params
     })
   }

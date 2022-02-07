@@ -719,8 +719,6 @@ ul.sub-menu {
 }
 
 
-
-
 /* Gallery Sction */
 
 .gallery-section {
@@ -1199,7 +1197,6 @@ ul.sub-menu {
 .products img {
   display: inline-block;
 }
-
 
 
 .products-section .products:hover {
@@ -1790,7 +1787,6 @@ ul.sub-menu {
 }
 
 
-
 .entry-post .entry-meta a {
   font-size: 16px;
   color: #fff;
@@ -1947,22 +1943,6 @@ ul.sub-menu {
   text-transform: capitalize;
 }
 
-.form-control {
-  border-radius: 0;
-  border: 1px solid #ececec;
-  height: 36px;
-  margin-bottom: 25px;
-  box-shadow: none;
-}
-
-.form-control:focus {
-  border: 1px solid #ed145b;
-}
-
-textarea.form-control {
-  min-height: 135px;
-  resize: none;
-}
 
 .contact-form .btn.btn-primary {
   margin-top: 15px;
@@ -2531,8 +2511,6 @@ textarea.form-control {
   letter-spacing: 10px;
   margin-top: 0;
 }
-
-
 
 
 .showcase-section nav {
@@ -3192,7 +3170,6 @@ textarea.form-control {
 }
 
 
-
 /* ==========================================================================
     BAND
  ========================================================================== */
@@ -3619,7 +3596,6 @@ textarea.form-control {
 #portfolio-item {
   overflow: hidden;
 }
-
 
 
 /* Audio Album */
@@ -4206,27 +4182,6 @@ textarea.form-control {
  	Extra Css
  ========================================================================== */
 
-a, button, .artists-overlay,
-.post-icons, .image-overlay,
-.clients li, .post-content,
-.festival-info h2, .showcase-overlay,
-.products, .products i, .gallery-overlay,
-.time-overlay, .owl-prev,
-.owl-next, .album-overlay,
-.products-icons, .btn.btn-default i,
-.btn.btn-primary i, .controls,
-.showcase-section i, .vocalist-overlya,
-.time:before, .client img, .video-overlay,
-.owl-nav i, .jp-controls:before, .jp-playlist li,
-.photos-filckr li:hover:before,
-.recent-image img, .photos-filckr li img {
-  -webkit-transition: all 500ms;
-  -moz-transition: all 500ms;
-  -ms-transition: all 500ms;
-  -o-transition: all 500ms;
-  transition: all 500ms;
-}
-
 
 @font-face {
   font-family: sans-serif;
@@ -4234,21 +4189,6 @@ a, button, .artists-overlay,
   font-style: normal;
 }
 
-@font-face {
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-weight: normal;
-  font-style: normal;
-}
-
-
-@font-face {
-  font-weight: normal;
-  font-style: normal;
-}
 
 video {
   background-color: #333;

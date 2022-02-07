@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {headerDefault} from "../../config";
 import {Observable} from "rxjs";
-import {PerformersListingDto} from "../dto/PerformersListingDto";
+import {IPerformer} from "../interfaces/performer/IPerformer";
+import {BaseListingDto} from "../dto/baseListingDto";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class PerformerService {
   constructor(private http: HttpClient) {
   }
 
-  getPerformers(pageId = 1, perPage = 20): Observable<PerformersListingDto> {
+  getPerformers(pageId = 1, perPage = 20): Observable<BaseListingDto<IPerformer>> {
     let params = new HttpParams();
 
     if (pageId > 1) {
@@ -25,8 +25,7 @@ export class PerformerService {
     }
 
     return this.http
-      .get<PerformersListingDto>(environment.apiUrl + 'api/Performers', {
-        headers: {...headerDefault.headers},
+      .get<BaseListingDto<IPerformer>>(environment.apiUrl + 'api/Performers', {
         params
       })
   }

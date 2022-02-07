@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {IPerformer} from "../../../interfaces/performer/IPerformer";
 import {PerformerService} from "../../../services/performer.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {PerformersListingDto} from "../../../dto/PerformersListingDto";
+import {IPerformer} from "../../../interfaces/performer/IPerformer";
+import {BaseListingDto} from "../../../dto/baseListingDto";
+import {IPaginated} from "../../../interfaces/pagination/IPaginated";
 
 
 @Component({
@@ -10,10 +11,10 @@ import {PerformersListingDto} from "../../../dto/PerformersListingDto";
   templateUrl: './performer-list.component.html',
   styleUrls: ['./performer-list.component.scss']
 })
-export class PerformerListComponent implements OnInit {
+export class PerformerListComponent implements OnInit, IPaginated {
   page: number = 1;
   componentURL = '/performers';
-  model: PerformersListingDto = {
+  model: BaseListingDto<IPerformer> = {
     items: [],
     pagination: {
       perPage: 20,

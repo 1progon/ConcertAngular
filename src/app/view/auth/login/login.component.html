@@ -1,6 +1,6 @@
 <div class="container">
   <h2>Login</h2>
-  <form (ngSubmit)="onSubmit(form)">
+  <form (ngSubmit)="onSubmit(form)" class="col-12 col-sm-6">
     <div class="mb-3">
       <label for="email" class="form-label">Email</label>
       <input
@@ -24,7 +24,11 @@
 
 
     <div class="mb-3">
-      <button type="submit" class="btn btn-success">Login</button>
+      <button type="submit"
+              [disabled]="isSubmitted"
+              class="btn btn-success">Login</button>
     </div>
+
+    <span *ngIf="error" class="text-danger">{{ error.error }}</span>
   </form>
 </div>

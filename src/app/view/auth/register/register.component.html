@@ -1,9 +1,12 @@
 <div class="container">
   <h2>Register</h2>
-  <form (ngSubmit)="onSubmit(form)">
+  <form #formRef="ngForm"
+        (ngSubmit)="onSubmit(formRef, form)"
+        class="col-12 col-sm-6">
     <div class="mb-3">
-      <label for="email" class="form-label">Email</label>
+      <label for="email" class="form-label required">Email</label>
       <input
+        required
         [(ngModel)]="form.email"
         type="email"
         name="email"
@@ -11,31 +14,123 @@
         class="form-control">
     </div>
 
-
-    <div class="mb-3">
-      <label for="password" class="form-label">Password</label>
+    <label for="password" class="form-label required">Password</label>
+    <div class="input-group mb-3">
       <input
         [(ngModel)]="form.password"
-        type="password"
+        [type]="inputPasswordType"
         name="password"
+        minlength="5"
         id="password"
+        required
         class="form-control">
+      <span (click)="showPassword()" class="input-group-text pointer">show</span>
     </div>
 
     <div class="mb-3">
-      <label for="password-confirm" class="form-label">Password Confirm</label>
+      <label for="password-confirm" class="form-label required">Password Confirm</label>
       <input
         [(ngModel)]="form.passwordConfirm"
-        type="password"
-        name="password"
+        [type]="inputPasswordType"
+        name="passwordConfirm"
+        minlength="5"
+        required
         id="password-confirm"
         class="form-control">
-      <span *ngIf="isPasswordsEqual" class="text-danger">Passwords not equal</span>
+      <span *ngIf="!isPasswordsEqual" class="text-danger">Passwords not equal</span>
     </div>
 
 
-    <div class="mb-3">
-      <button type="submit" class="btn btn-success">Login</button>
+    <!--Location block-->
+    <div>
+      <h2>Location</h2>
+
+      <!--Countries select-->
+      <div class="bg-light p-3 mt-3 rounded">
+        <div class="mb-3">
+          <label for="country" class="form-label required">Country</label>
+          <select (change)="updateStates(form.countryId)"
+                  name="countryId"
+                  [(ngModel)]="form.countryId"
+                  id="country"
+                  required
+                  class="form-select">
+            <option [value]="undefined" hidden>Select Country</option>
+            <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
+          </select>
+        </div>
+
+        <!--States select-->
+        <div class="mb-3">
+          <label for="state" class="form-label required">State (Region)</label>
+          <select (change)="updateCities(form.countryId, form.stateId)"
+                  [disabled]="!isStates"
+                  name="stateId"
+                  required
+                  id="state"
+                  [(ngModel)]="form.stateId"
+                  class="form-select">
+            <option [value]="undefined" hidden>Select State</option>
+            <option *ngFor="let state of states"
+                    [value]="state.id">{{ state.name }}</option>
+          </select>
+        </div>
+
+        <!--Cities select-->
+        <div class="mb-3">
+          <label for="city" class="form-label required">City</label>
+          <select name="cityId"
+                  [disabled]="!isCities"
+                  id="city"
+                  required
+                  [(ngModel)]="form.cityId"
+                  class="form-select">
+            <option [value]="undefined" hidden>Select City</option>
+            <option *ngFor="let city of cities"
+                    [value]="city.id">{{ city.name }}</option>
+          </select>
+        </div>
+
+
+      </div>
+
     </div>
+
+
+    <!--Gender block-->
+    <div>
+      <h2>Info</h2>
+
+      <div class="bg-light p-3 mt-3 rounded">
+        <div class="mb-3">
+          <label for="gender" class="form-label required">Gender</label>
+          <select name="genderValue"
+                  id="gender"
+                  required
+                  class="form-select"
+                  [(ngModel)]="form.genderValue">
+            <option [value]="undefined" hidden>Select Gender</option>
+            <option *ngFor="let gender of model.genderTypes"
+                    [value]="gender">{{ gender.name }}</option>
+          </select>
+
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="my-3">
+      <button type="submit"
+              [disabled]="formRef.invalid || isSubmitted || !formRef.dirty"
+              class="btn btn-success">Register
+      </button>
+
+    </div>
+
+
+    <app-toast *ngIf="!toast.isHidden"
+               (destroyToast)="toast.isHidden=$event"
+               [model]="toast"></app-toast>
   </form>
 </div>

@@ -42,5 +42,18 @@ body {
     padding: 0;
   }
 
+  form {
+    label {
+      &.required::after {
+        content: ' * ';
+        color: red;
+      }
+    }
+  }
+
+  .pointer {
+    cursor: pointer;
+  }
 
 }
+

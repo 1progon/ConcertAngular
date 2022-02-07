@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
-import {IPagination} from "../../../interfaces/pagination/IPagination";
+import {PaginationDto} from "../../../dto/PaginationDto";
 
 
 @Component({
@@ -9,7 +9,7 @@ import {IPagination} from "../../../interfaces/pagination/IPagination";
 })
 export class PaginationComponent implements OnChanges {
   @Input() componentURL?: string;
-  @Input() pagination: IPagination = {
+  @Input() pagination: PaginationDto = {
     total: 1,
     perPage: 20,
     pageId: 1,

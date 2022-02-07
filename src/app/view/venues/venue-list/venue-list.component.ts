@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {VenueService} from "../../../services/venue.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {VenuesListingDto} from "../../../dto/VenuesListingDto";
+import {IVenue} from "../../../interfaces/venue/IVenue";
+import {BaseListingDto} from "../../../dto/baseListingDto";
+import {IPaginated} from "../../../interfaces/pagination/IPaginated";
 
 
 @Component({
@@ -9,10 +11,10 @@ import {VenuesListingDto} from "../../../dto/VenuesListingDto";
   templateUrl: './venue-list.component.html',
   styleUrls: ['./venue-list.component.scss']
 })
-export class VenueListComponent implements OnInit {
+export class VenueListComponent implements OnInit, IPaginated {
   page: number = 1;
   componentURL = '/venues';
-  model: VenuesListingDto = {
+  model: BaseListingDto<IVenue> = {
     items: [],
     pagination: {
       total: 0,
@@ -23,7 +25,9 @@ export class VenueListComponent implements OnInit {
   };
 
 
-  constructor(private venuesService: VenueService, private route: ActivatedRoute, private router: Router) {
+  constructor(private venuesService: VenueService,
+              private route: ActivatedRoute,
+              private router: Router) {
   }
 
 

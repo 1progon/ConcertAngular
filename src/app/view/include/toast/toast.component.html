@@ -1,0 +1,14 @@
+<div class="toast-container position-absolute p-5 top-0 end-0">
+  <div class="toast bg-warning show">
+    <div class="toast-header">
+      <!--<img src="#" class="rounded me-2" alt="icon alt">-->
+      <strong class="me-auto">{{ model.title }}</strong>
+      <small>{{ model.dateTime.toLocaleDateString() }} {{ model.dateTime.toLocaleTimeString() }}</small>
+      <button type="button" class="btn-close" (click)="destroyToast.emit(true)"></button>
+    </div>
+    <div class="toast-body">
+      {{ model.message }}
+    </div>
+  </div>
+
+</div>

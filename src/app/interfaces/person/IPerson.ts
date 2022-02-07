@@ -1,26 +1,27 @@
 import {IAccountBase} from "../IAccountBase";
+import {PersonType} from "./PersonType";
 
 export interface IPerson extends IAccountBase {
   firstName: string | null;
   lastName: string | null;
   middleName: string | null;
 
-  // PersonType Type ;
+  type: PersonType;
   isAdmin: boolean;
 
-  // GenderType Gender ;
+  gender: string;
 
   birthDate: Date | null;
 
   photo: string | null;
 
-  // List<PersonCompanies>? Companies ;
-  // List<Event.Event>? Events ;
-  // List<Venue.Venue>? Venues ;
+  // list<personCompanies>? companies ;
+  // list<eventEvent>? events ;
+  // list<venueVenue>? venues ;
   //
-  // List<Event.Event>? EventFavorites ;
-  // List<Event.Event>? EventFollowings ;
+  // list<eventEvent>? eventFavorites ;
+  // list<eventEvent>? eventFollowings ;
   //
-  // List<Performer.Performer>? PerformerFavorites ;
-  // List<Performer.Performer>? PerformerFollowings ;
+  // list<performerPerformer>? performerFavorites ;
+  // list<performerPerformer>? performerFollowings ;
 }

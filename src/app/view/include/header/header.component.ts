@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
-import {headerDefault} from "../../../../config";
 import {IPerformerCategory} from "../../../interfaces/performer/IPerformerCategory";
+import {AccountService} from "../../../services/account.service";
 
 @Component({
   selector: 'app-header',
@@ -15,16 +15,11 @@ export class HeaderComponent implements OnInit {
   performerCategories: IPerformerCategory[] = [];
   auth: { user: {}, auth: boolean } = {auth: false, user: {}};
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, public accountService: AccountService) {
   }
 
   ngOnInit(): void {
-    this.http.get<IPerformerCategory[]>(environment.apiUrl + 'api/Homepage',
-      {
-        headers: {
-          ...headerDefault.headers,
-        }
-      })
+    this.http.get<IPerformerCategory[]>(environment.apiUrl + 'api/Homepage')
       .subscribe(res => this.performerCategories = res)
   }
 

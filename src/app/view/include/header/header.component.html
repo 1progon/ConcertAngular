@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container">
-    <a class="navbar-brand" routerLink="/">Tickets</a>
+    <a class="navbar-brand" routerLink="/">Concert</a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
@@ -37,13 +37,13 @@
       </ul>
 
 
-      <div class="auth-links" *ngIf="!auth.auth">
+      <div class="auth-links" *ngIf="!accountService.isLogged()">
         <a routerLink="/login" class="btn btn-outline-secondary me-1">Login</a>
         <a routerLink="/register" class="btn btn-danger">Register</a>
       </div>
 
-      <div class="auth-links" *ngIf="auth.auth">
-        <a routerLink="/dashboard" class="me-1">Dashboard</a>
+      <div class="auth-links" *ngIf="accountService.isLogged()">
+        <a routerLink="/account/dashboard" class="btn btn-outline-secondary me-1">Dashboard</a>
         <a routerLink="/logout" class="btn btn-danger">Logout</a>
       </div>
     </div>

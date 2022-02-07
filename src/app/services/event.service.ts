@@ -3,9 +3,8 @@ import {map} from "rxjs/operators";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from 'src/environments/environment';
 import {IEvent} from '../interfaces/event/IEvent';
-import {headerDefault} from 'src/config';
 import {Observable} from "rxjs";
-import {EventsListingDto} from "../dto/eventsListingDto";
+import {BaseListingDto} from "../dto/baseListingDto";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +14,7 @@ export class EventService {
   constructor(private http: HttpClient) {
   }
 
-  getEvents(pageId = 1, perPage = 20): Observable<EventsListingDto> {
+  getEvents(pageId = 1, perPage = 20): Observable<BaseListingDto<IEvent>> {
     let params = new HttpParams();
 
     if (pageId > 1) {
@@ -26,8 +25,8 @@ export class EventService {
       params = params.append('PerPage', perPage);
     }
 
-    return this.http.get<EventsListingDto>(environment.apiUrl + 'api/Events', {
-      headers: {...headerDefault.headers},
+
+    return this.http.get<BaseListingDto<IEvent>>(environment.apiUrl + 'api/Events', {
       params
     })
       .pipe(map(events => {
