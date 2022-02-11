@@ -5,7 +5,7 @@ import {IError} from "../../../../interfaces/error/IError";
 import {HttpErrorResponse} from "@angular/common/http";
 import {IToast} from "../../../../interfaces/toast/IToast";
 import {NgForm} from "@angular/forms";
-import {PersonDto} from "../../../../dto/personDto";
+import {PersonShortDto} from "../../../../dto/personShortDto";
 
 @Component({
   selector: 'app-edit-account',
@@ -13,7 +13,7 @@ import {PersonDto} from "../../../../dto/personDto";
   styleUrls: ['./edit-account.component.scss']
 })
 export class EditAccountComponent implements OnInit {
-  model?: PersonDto = {} as PersonDto;
+  model?: PersonShortDto = {} as PersonShortDto;
   isSubmitted = false;
   error?: IError;
   toast: IToast = {} as IToast;
@@ -22,10 +22,11 @@ export class EditAccountComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.model = this.accountService.getPerson();
+    this.accountService.getLocalPersonShortDto()
+      ?.subscribe(person => this.model = person);
   }
 
-  onSubmit(formRef: NgForm, model?: PersonDto) {
+  onSubmit(formRef: NgForm, model?: PersonShortDto) {
     this.isSubmitted = true;
     this.error = undefined;
 
@@ -37,14 +38,13 @@ export class EditAccountComponent implements OnInit {
               this.toast.isHidden = false;
               this.toast.title = 'Edit user';
               this.toast.message = 'Success updated';
-              this.accountService.setStorage(model);
             },
             error: (err: HttpErrorResponse) => {
               this.error = err.error;
               this.toast.isHidden = false;
               this.toast.title = 'Error ' + err.status;
               this.toast.message = 'Error, try again or next time!'
-              this.accountService.clearStorage();
+              this.accountService.logout();
               this.router.navigateByUrl(`/error/${err.status}`).finally();
             },
           }

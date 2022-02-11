@@ -1,3 +1,4 @@
+<app-bread-crumbs [breadcrumbs]="breadcrumbs"></app-bread-crumbs>
 <div class="ucoming-events section-padding before-after">
   <div class="container">
     <ul class="schedule-menu list-inline row">
@@ -25,7 +26,7 @@
           <div class="festival-image">
             <div class="image-overlay"></div>
             <img class="img-fluid"
-                 src="https://demo.themeregion.com/playbit/images/gallery/5.jpg" alt="Image">
+                 [src]="event.image" alt="Image">
             <div class="time">
               <h1>
                 {{ event.date.getDate() }}

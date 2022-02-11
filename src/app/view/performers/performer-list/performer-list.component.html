@@ -6,11 +6,9 @@
       <a [routerLink]="['/performers', performer?.slug ]">
         <div class="artists">
           <div class="artists-overlay"></div>
-          <img class="img-fluid"
-               src=""
-               alt="Image">
+          <img class="img-fluid" [src]="performer.image"
+               [alt]="'performer ' + performer.name + ' image'">
           <div class="artists-info">
-
             <!--Icons social-->
             <ul class="list-inline">
               <li>

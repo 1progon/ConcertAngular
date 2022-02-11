@@ -1,1 +1,7 @@
-<p>bread-crumbs works!</p>
+<div class="breadcrumb bg-image">
+  <div class="overlay"></div>
+  <div class="page-title">
+    <h1 *ngIf="breadcrumbs.url">Homepage {{ breadcrumbs.url }}</h1>
+    <h2 *ngIf="breadcrumbs.title">{{ breadcrumbs.title }}</h2>
+  </div>
+</div>

@@ -1,5 +1,147 @@
-<div>
-  <div class="container">
-  __: {{ slug }}
+<app-bread-crumbs [breadcrumbs]="breadcrumbs"></app-bread-crumbs>
+
+<div class="about-section about-festival section-padding before-after bg-white">
+  <div class="about-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 no-padding">
+          <div class="about-image">
+            <img class="img-fluid" [src]="event?.image"
+                 [alt]="event?.name + ' event'">
+          </div>
+        </div>
+        <div class="col-lg-6 no-padding">
+          <div class="about-info ">
+            <h3>{{ event?.name }}</h3>
+            <ul class="about-time">
+
+              <li><img src="" alt="faclock">{{ event?.date }} {{ event?.time }}</li>
+
+              <!--TODO Add full address-->
+              <li><img src="" alt="famap">{{ event?.venue?.street }}</li>
+
+            </ul>
+            <div [innerHTML]="event?.description"></div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+
+<div class="promotion section-padding bg-image before">
+  <div class="promotion-content">
+    <div class="logo-intro">
+      <img class="img-fluid" src="#" alt="some inage text">
+      <span>Concert present</span>
+    </div>
+    <h2>{{ event?.subCategory?.name }} | {{ event?.subCategory?.category?.name }}</h2>
+    <a routerLink="#"
+       class="btn btn-primary">Get a Ticket
+      <img src="" alt="fa-chevron-circle-right">
+    </a>
+    <ul class="social list-inline">
+      <li><a routerLink="#"><img src="" alt="fa-facebook"></a></li>
+      <li><a routerLink="#"><img src="" alt="fa-twitter"></a></li>
+      <li><a routerLink="#"><img src="" alt="fa-google-plus"></a></li>
+      <li><a routerLink="#"><img src="" alt="fa-soundcloud"></a></li>
+      <li><a routerLink="#"><img src="" alt="fa-instagram"></a></li>
+      <li><a routerLink="#"><img src="" alt="fa-rss"></a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="schedule-section section-padding before-after bg-white">
+  <div class="section-title">
+    <i class="fa fa-clock-o"></i>
+    <h1>Time frame</h1>
+    <h2>Festival Schedule</h2>
+  </div>
+  <div class="schedule-text">
+    <div [innerHTML]="event?.description"></div>
+  </div>
+  <div class="container">
+    <ul class="schedule-menu list-inline">
+      <li><a routerLink="#">Time</a></li>
+      <li><a routerLink="#">Performer</a></li>
+      <li><a routerLink="#">Genre</a></li>
+      <li><a routerLink="#">Date</a></li>
+      <li><a routerLink="#">Music</a></li>
+    </ul>
+    <ul>
+      <li class="festival-info ">
+        <div class="row">
+          <div class="col-sm-6 col-md-4">
+            <div class="festival-image">
+              <div class="image-overlay"></div>
+              <img class="img-fluid" src="images/gallery/5.jpg" alt="Image">
+              <div class="time">
+                <h1>09:00 <span>PM</span></h1>
+              </div>
+            </div>
+            <div class="text-left">
+              <h2>Ryan Putnam</h2>
+              <h5>Rockers Band</h5>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4">
+            <div class="rock-roll">
+              <h5 class="pull-left">Rock &amp; Roll</h5>
+              <h5 class="pull-right">21 February, 2018 </h5>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="audio-list">
+              <div id="music1" class="player" style="width: 0px; height: 0px;"><img id="jp_poster_0"
+                                                                                    style="width: 0px; height: 0px; display: none;">
+                <audio id="jp_audio_0" preload="metadata"
+                       src="http://www.jplayer.org/audio/mp3/TSP-07-Cybersonnet.mp3"></audio>
+              </div>
+              <div id="music-1" class="audio">
+                <ul class="controls">
+                  <li><a href="javascript:;" class="jp-play" tabindex="1"><i class="fa fa-play-circle-o"></i></a></li>
+                  <li><a href="javascript:;" class="jp-pause" tabindex="1" style="display: none;"><i
+                    class="fa fa-pause-circle-o" aria-hidden="true"></i></a></li>
+                </ul>
+              </div>
+              <div class="audio-info">
+                <h5>You are bad boy (5:41)</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="contact-section before">
+
+  <!--TODO google map-->
+  <iframe src=""></iframe>
+  <div class="contact-info">
+    <div class="time">
+      <h2>19 <span>feb</span></h2>
+    </div>
+    <h3>{{ event?.name }}</h3>
+    <ul>
+      <li>
+        <img src="" alt="faclock">
+        {{ event?.date }} {{ event?.time }}
+      </li>
+
+      <li>
+        <img src="" alt="famap">
+        <!--TODO address need to add-->
+        {{ event?.venue?.street }}
+      </li>
+    </ul>
+    <a routerLink="#" class="btn btn-primary">Get a Ticket<i class="fa fa-chevron-circle-right"></i></a>
+  </div>
+</div>
+
+

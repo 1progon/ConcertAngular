@@ -21,7 +21,10 @@ export class DefaultHeadersInterceptor implements HttpInterceptor {
     headers = headers.append('Content-Type', 'application/json');
 
     if (this.accountService.isLogged()) {
-      headers = headers.append('Authorization', 'Bearer ' + this.accountService.getToken());
+      headers = headers
+        .append(
+          'Authorization',
+          'Bearer ' + this.accountService.getPersonTokenDto()?.accessToken);
     }
 
     request = request.clone({headers});

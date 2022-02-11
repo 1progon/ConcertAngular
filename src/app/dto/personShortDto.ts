@@ -1,7 +1,7 @@
 import {PersonType} from "../interfaces/person/PersonType";
+import {PersonTokenDto} from "./personTokenDto";
 
-export interface PersonDto {
-  guid: string;
+export interface PersonShortDto extends PersonTokenDto {
   email: string;
 
   firstName?: string;
@@ -9,8 +9,4 @@ export interface PersonDto {
 
   type: PersonType;
 
-  token: string;
-  tokenExpire: Date;
-
-  timestamp: number;
 }

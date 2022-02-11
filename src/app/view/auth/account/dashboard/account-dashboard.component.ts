@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AccountService} from "../../../../services/account.service";
-import {PersonDto} from "../../../../dto/personDto";
+import {PersonShortDto} from "../../../../dto/personShortDto";
 
 @Component({
   selector: 'app-account-dashboard',
@@ -9,12 +9,15 @@ import {PersonDto} from "../../../../dto/personDto";
 })
 export class AccountDashboardComponent implements OnInit {
 
-  person?: PersonDto;
+  person?: PersonShortDto;
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService) {
+  }
 
   ngOnInit(): void {
-    this.person = this.accountService.getPerson();
+    this.accountService.getLocalPersonShortDto()
+      ?.subscribe(person => this.person = person);
+
   }
 
 }

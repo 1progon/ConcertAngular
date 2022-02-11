@@ -37,4 +37,10 @@ export class EventService {
         return events;
       }))
   }
+
+  getEvent(slug: string): Observable<IEvent> {
+    return this.http
+      .get<IEvent>(environment.apiUrl + 'api/Events/' + slug);
+
+  }
 }

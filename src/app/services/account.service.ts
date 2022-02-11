@@ -1,12 +1,14 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 import {map} from "rxjs/operators";
 import {LoginDto} from '../dto/loginDto';
-import {PersonDto} from '../dto/personDto';
+import {PersonShortDto} from '../dto/personShortDto';
 import {RegisterPostDto} from '../dto/registerPostDto';
 import {RegisterGetDto} from "../dto/registerGetDto";
+import {PersonTokenDto} from "../dto/personTokenDto";
+import {Router} from "@angular/router";
 
 
 @Injectable({
@@ -15,8 +17,9 @@ import {RegisterGetDto} from "../dto/registerGetDto";
 export class AccountService {
 
   private static readonly storagePersonName = 'pers';
+  private personShortDto?: PersonShortDto;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
 
@@ -24,12 +27,13 @@ export class AccountService {
    * POST: request to login person on the server by email and password
    * @param {LoginDto} model
    */
-  login(model: LoginDto): Observable<PersonDto> {
-    return this.http.post<PersonDto>(environment.apiUrl + 'api/Admin/AuthPerson/Login',
+  login(model: LoginDto): Observable<PersonTokenDto> {
+    return this.http.post<PersonTokenDto>(environment.apiUrl + 'api/Admin/AuthPerson/Login',
       JSON.stringify(model))
       .pipe(
         map(person => {
           if (person) {
+            person.accessTokenExpire = new Date(Date.parse(person.accessTokenExpire.toString()));
             this.setStorage(person);
           }
           return person;
@@ -39,12 +43,13 @@ export class AccountService {
 
 
   /** POST: method for register person */
-  registerPost(model: RegisterPostDto): Observable<PersonDto> {
-    return this.http.post<PersonDto>(environment.apiUrl + 'api/Admin/AuthPerson/Register',
+  registerPost(model: RegisterPostDto): Observable<PersonTokenDto> {
+    return this.http.post<PersonTokenDto>(environment.apiUrl + 'api/Admin/AuthPerson/Register',
       JSON.stringify(model))
       .pipe(
         map(person => {
           if (person) {
+            person.accessTokenExpire = new Date(Date.parse(person.accessTokenExpire.toString()));
             this.setStorage(person);
           }
           return person;
@@ -77,15 +82,13 @@ export class AccountService {
    */
   isLogged(): boolean {
 
-    let person = this.getPerson();
+    let person: PersonTokenDto | undefined = this.getPersonTokenDto();
 
     if (person) {
-      if (person.timestamp >= Date.now()) {
-        return true;
-      } else {
-        this.clearStorage();
-      }
+      return true;
     }
+
+    this.logout();
 
     return false;
   }
@@ -95,42 +98,60 @@ export class AccountService {
    * Save person token to sessionStorage
    * @param person
    */
-  setStorage(person: PersonDto): void {
-    person.timestamp = Date.parse(person.tokenExpire.toString());
-
+  setStorage(person: PersonTokenDto): void {
     sessionStorage.setItem(AccountService.storagePersonName, JSON.stringify(person))
   }
 
-  clearStorage() {
+  logout() {
     sessionStorage.removeItem(AccountService.storagePersonName);
+    // this.router.navigateByUrl('/login').finally();
   }
 
-  getPerson(): PersonDto | undefined {
-    let item = sessionStorage.getItem(AccountService.storagePersonName);
+  getPersonFromServer(): Observable<PersonShortDto> | undefined {
 
-    if (item && item.trim() != '') {
-      return JSON.parse(item);
+    let token = this.getPersonTokenDto();
+    if (!token) {
+      return undefined;
+    }
+
+    return this.http
+      .get<PersonShortDto>(environment.apiUrl + 'api/Admin/Person/' + token.guid)
+      .pipe(map(personShortDto => {
+        this.personShortDto = personShortDto;
+        return personShortDto;
+      }))
+
+  }
+
+  public getPersonTokenDto(): PersonTokenDto | undefined {
+    let personTokenDto: PersonTokenDto
+    let json = sessionStorage.getItem(AccountService.storagePersonName);
+
+    if (json && json.trim() != '') {
+      personTokenDto = JSON.parse(json);
+      return personTokenDto;
     }
 
     return undefined;
   }
 
-  public getToken(): string {
-    let person: PersonDto
-    let json = sessionStorage.getItem(AccountService.storagePersonName);
 
-    if (json && json.trim() != '') {
-      person = JSON.parse(json);
-      return person.token;
+  public getLocalPersonShortDto(): Observable<PersonShortDto | undefined> | undefined {
+
+    if (this.personShortDto) {
+      return of(this.personShortDto);
     }
 
-    return '';
+    return this.getPersonFromServer();
+
   }
 
 
-  updateUserData(hashId: string, person: PersonDto): Observable<any> {
-    return this.http.put(environment.apiUrl + 'api/Admin/Person/' + hashId,
-      JSON.stringify(person))
+  updateUserData(guid: string, person: PersonShortDto): Observable<any> {
+    return this.http
+      .put(
+        environment.apiUrl + 'api/Admin/Person/' + guid,
+        JSON.stringify(person))
   }
 
 }

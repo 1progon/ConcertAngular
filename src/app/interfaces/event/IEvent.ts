@@ -18,7 +18,9 @@ export interface IEvent extends IBaseModel {
   performers: IPerformer[];
 
   active: boolean;
-  Status: string;
+  status: string;
+
+  image: string;
 
 
   venueId: number;

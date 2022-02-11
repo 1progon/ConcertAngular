@@ -23,7 +23,7 @@
 
 html,
 body {
-  font-family: sans-serif;
+
   font-weight: 400;
   color: #2c3e50;
   overflow-x: hidden;
@@ -31,7 +31,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: sans-serif;
+
   font-weight: normal;
 }
 
@@ -128,9 +128,8 @@ a:focus, button:focus, .btn:focus,
 .section-title h1,
 .page-title h1 {
   font-size: 12px;
-  letter-spacing: 14px;
+  letter-spacing: 5px;
   color: #ed145b;
-  margin-top: 15px;
 }
 
 .section-title h2,
@@ -149,42 +148,6 @@ a:focus, button:focus, .btn:focus,
   padding: 0;
 }
 
-.before-after,
-.before {
-  position: relative;
-}
-
-.before-after:before,
-.before-after:after {
-  position: absolute;
-  content: "";
-  top: -30px;
-  width: 6%;
-  border-bottom: 30px solid #fff;
-  z-index: 10;
-}
-
-.before-after:before {
-  left: 0;
-  border-right: 25px solid transparent;
-}
-
-.before-after:after {
-  right: 0;
-  border-left: 25px solid transparent;
-}
-
-.before:before {
-  position: absolute;
-  content: "";
-  top: 0;
-  left: 50%;
-  margin-left: -46%;
-  width: 92%;
-  border-right: 25px solid transparent;
-  border-left: 25px solid transparent;
-  border-top: 30px solid #fff;
-}
 
 .bg-white {
   background-color: #FFF;
@@ -199,7 +162,7 @@ a:focus, button:focus, .btn:focus,
   margin-bottom: 0;
   text-transform: uppercase;
   text-align: center;
-  padding-top: 120px;
+  padding-top: 70px;
   padding-bottom: 70px;
   width: 100%;
 }
@@ -413,7 +376,7 @@ ul.sub-menu {
 }
 
 .logo-intro span {
-  font-family: 'Cookie', cursive;
+
   font-size: 58px;
   color: #fff;
   text-transform: capitalize;
@@ -564,7 +527,7 @@ ul.sub-menu {
 
 .about-info ul {
   margin-top: 20px;
-  font-family: sans-serif;
+
   font-size: 14px;
 }
 
@@ -1647,7 +1610,7 @@ ul.sub-menu {
 .rating > label:before {
   margin: 5px;
   font-size: 1.25em;
-  font-family: FontAwesome;
+
   display: inline-block;
   content: "\f005";
 }
@@ -2001,7 +1964,7 @@ ul.sub-menu {
 
 .contact-info li,
 .contact-info li a {
-  font-family: sans-serif;
+
   font-size: 14px;
   margin-bottom: 10px;
   color: #444;
@@ -2103,7 +2066,7 @@ ul.sub-menu {
 
 .twitter-feed a {
   color: #00bff3;
-  font-family: sans-serif;
+
 }
 
 .twitter-feed a:hover {
@@ -2168,7 +2131,7 @@ ul.sub-menu {
 }
 
 .contact-info li {
-  font-family: sans-serif;
+
   font-size: 14px;
   margin-bottom: 10px;
 }
@@ -2218,6 +2181,8 @@ ul.sub-menu {
 }
 
 .schedule-menu {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 30px;
   background-color: #f7f7f7;
   padding: 30px 40px;
@@ -2308,7 +2273,7 @@ ul.sub-menu {
 }
 
 .artist-info address .menu span {
-  font-family: sans-serif;
+
   margin-right: 15px;
 }
 
@@ -3181,7 +3146,7 @@ ul.sub-menu {
 }
 
 .band-banner .home-content h1 {
-  font-family: 'Cookie', cursive;
+
   font-size: 90px;
 }
 
@@ -3532,7 +3497,7 @@ ul.sub-menu {
   color: #000;
   font-size: 18px;
   text-transform: capitalize;
-  font-family: sans-serif;
+
 }
 
 .album-menu .btn-default.active.focus,
@@ -3760,7 +3725,7 @@ ul.sub-menu {
   right: 80px;
   top: 0;
   content: "\f08a";
-  font-family: fontawesome;
+
   font-size: 16px;
   color: #c3c3c3;
 }
@@ -3769,7 +3734,7 @@ ul.sub-menu {
 .audio-album .jp-playlist li.jp-playlist-current a .time:before {
   position: absolute;
   content: "\f004";
-  font-family: fontawesome;
+
   color: #ed145b;
 }
 
@@ -3799,7 +3764,7 @@ ul.sub-menu {
 
 .home-banner.biography .home-content h1 {
   font-size: 60px;
-  font-family: 'Cookie', cursive;
+
   color: #ed145b;
 }
 
@@ -3911,7 +3876,7 @@ ul.sub-menu {
 
 .signature h1,
 .signature h2 {
-  font-family: 'Allura', cursive;
+
   color: #000;
 }
 
@@ -4184,7 +4149,7 @@ ul.sub-menu {
 
 
 @font-face {
-  font-family: sans-serif;
+
   font-weight: normal;
   font-style: normal;
 }
